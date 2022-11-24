@@ -1,7 +1,9 @@
 package com.example.imageviewandglide
 
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.inputmethod.EditorInfo
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.imageviewandglide.databinding.ActivityMainBinding
@@ -20,6 +22,12 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnGetRI.setOnClickListener {
             getOnRandomImage()
+        }
+        binding.etWordForSearch.setOnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH){
+                return@setOnEditorActionListener getOnRandomImage()
+            }
+            return@setOnEditorActionListener false
         }
     }
 
